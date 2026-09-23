@@ -101,3 +101,13 @@
 - ผลลัพธ์: สร้าง SQLAlchemy models และ migration สำหรับตาราง `slots`, `bookings` และ `audit_logs`; `bookings` เก็บ `hn` และไม่มี `national_id`; เพิ่ม SQLite in-memory fixture สำหรับ test
 - ผล test: inline schema smoke test ผ่าน โดยพบครบทั้ง 3 ตารางและไม่พบ `national_id` ใน `bookings`; `pytest -q` ไม่พบ test module จึงจบด้วย exit code 5
 - สิ่งที่เกือบต้องเดา: วิธีโหลดไฟล์ migration ชื่อ `001_init.py` ไม่สามารถ import แบบชื่อปกติได้ จึงใช้ `import_module` ตามชื่อไฟล์ที่กำหนดไว้ ไม่ได้เปลี่ยนชื่อไฟล์หรือเพิ่มไฟล์นอก task
+
+---
+
+## 2569-09-23 คำสั่ง: /implement T-14
+
+- เครื่องมือ: Copilot ใน Codespaces
+- ไฟล์ที่สร้างหรือแก้: `frontend/src/pages/SlotPicker.jsx`, `frontend/src/App.jsx`, `frontend/src/__tests__/SlotPicker.test.jsx`; ใช้ `frontend/src/api/client.js` เดิมผ่าน default client โดยไม่แก้ไฟล์
+- ผลลัพธ์: สร้างหน้าจอเลือกแพ็กเกจและช่วงเวลา ใช้ `packages` prop เพื่อรับรายการแพ็กเกจโดยไม่กำหนด package code ตายตัว, เรียก `api.getSlots` เมื่อเลือกแพ็กเกจ และแสดงช่วงเวลาพร้อมจำนวนที่นั่งภายใน 30 วัน
+- ผล test: `npm test -- --run src/__tests__/SlotPicker.test.jsx` ผ่าน 2 tests
+- สิ่งที่เกือบต้องเดา: รายการ package code ไม่ได้ระบุใน spec/plan จึงหยุดถามทีมและใช้รายการจาก `packages` prop ตามคำยืนยัน ไม่ได้เพิ่มค่า package code ใน production
