@@ -91,3 +91,13 @@
 - tasks ที่รอ Open Question: 6 tasks ได้แก่ T-11, T-12, T-16, T-17, T-18 และ T-20 ซึ่งรอคำตอบ Q-02 เรื่องรูปแบบและวิธีออกหมายเลขคิว
 - AC ที่ทดสอบยากในสภาพแวดล้อมนักศึกษา: AC-BKG-04 ต้องจำลองระบบแจ้งเตือนและตรวจรอบส่งซ้ำ, AC-BKG-05 ต้องทดสอบผู้ใช้พร้อมกัน 200 คน และ AC-BKG-06 ต้องตรวจ audit log กับนโยบายเก็บรักษา โดยเสนอให้ใช้ mock/in-memory queue, load test แบบย่อส่วน และตรวจ schema/log ในชุดทดสอบตามลำดับ
 - task ที่ยากที่สุด: T-06 เพราะต้องทำให้การตัดที่นั่งและการบันทึกการจองเป็นการดำเนินการเดียว เพื่อป้องกันการจองซ้อนเมื่อมีคำขอพร้อมกัน
+
+---
+
+## 2569-09-23 คำสั่ง: /implement T-01
+
+- เครื่องมือ: Copilot ใน Codespaces
+- ไฟล์ที่สร้างหรือแก้: `backend/app/config.py`, `backend/app/db/session.py`, `backend/app/db/models.py`, `backend/app/db/migrations/001_init.py`, `backend/tests/conftest.py`
+- ผลลัพธ์: สร้าง SQLAlchemy models และ migration สำหรับตาราง `slots`, `bookings` และ `audit_logs`; `bookings` เก็บ `hn` และไม่มี `national_id`; เพิ่ม SQLite in-memory fixture สำหรับ test
+- ผล test: inline schema smoke test ผ่าน โดยพบครบทั้ง 3 ตารางและไม่พบ `national_id` ใน `bookings`; `pytest -q` ไม่พบ test module จึงจบด้วย exit code 5
+- สิ่งที่เกือบต้องเดา: วิธีโหลดไฟล์ migration ชื่อ `001_init.py` ไม่สามารถ import แบบชื่อปกติได้ จึงใช้ `import_module` ตามชื่อไฟล์ที่กำหนดไว้ ไม่ได้เปลี่ยนชื่อไฟล์หรือเพิ่มไฟล์นอก task
