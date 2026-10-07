@@ -52,3 +52,24 @@
 - โหมด: ร่าง
 - TC ID ที่เสนอ: TC-BKG-01-1, TC-BKG-01-2, TC-BKG-01-3, TC-BKG-01-4
 - ผล: เพิ่มแถวร่างใน [specs/001-booking/test-cases.md](/workspaces/670710731-swreqspec/specs/001-booking/test-cases.md) แล้ว ยังไม่เขียนโค้ด test
+
+### เรียกซ้ำ 2569-10-07 08.24
+- คำสั่ง: /testcases AC-BKG-01 specs/001-booking/
+- โหมด: ร่างค้างอยู่ เพราะทุกแถวยังมีสถานะ "ร่าง"
+- ผล: ไม่เขียนโค้ด test และไม่แก้แถวเดิม
+
+### เรียกซ้ำ 2569-10-07 08.26
+- คำสั่ง: /testcases AC-BKG-01 specs/001-booking/
+- โหมด: ร่างค้างอยู่ เพราะทุกแถวยังมีสถานะ "ร่าง"
+- ผล: ไม่เขียนโค้ด test และไม่แก้แถวเดิม
+
+### แก้สถานะ 2569-10-07 08.27
+- ทีมสั่ง: ปรับ test cases ของ AC-BKG-01 เป็นสถานะ "ใช้ได้"
+- ผล: เปลี่ยนสถานะ TC-BKG-01-1 ถึง TC-BKG-01-4 เป็น "ใช้ได้" ใน [specs/001-booking/test-cases.md](/workspaces/670710731-swreqspec/specs/001-booking/test-cases.md)
+
+### 2569-10-07 08.28 คำสั่ง: /testcases AC-BKG-01 specs/001-booking/
+- โหมด: เขียน test
+- TC ที่เขียน: `TC-BKG-01-1`, `TC-BKG-01-2`, `TC-BKG-01-3`; `TC-BKG-01-4` ตรวจด้วยคนจึงไม่สร้างโค้ด test
+- ไฟล์ test ที่เพิ่ม/แก้: [backend/tests/test_AC_BKG_01.py](/workspaces/670710731-swreqspec/backend/tests/test_AC_BKG_01.py), [frontend/src/__tests__/AC-BKG-01.test.jsx](/workspaces/670710731-swreqspec/frontend/src/__tests__/AC-BKG-01.test.jsx)
+- ผล backend: `6 passed`
+- ผล frontend: `1 passed, 1 todo` (test ของ TC-BKG-01-3 รอการสร้าง BookingResult และคำตอบ Q-02)
