@@ -73,3 +73,19 @@
 - ไฟล์ test ที่เพิ่ม/แก้: [backend/tests/test_AC_BKG_01.py](/workspaces/670710731-swreqspec/backend/tests/test_AC_BKG_01.py), [frontend/src/__tests__/AC-BKG-01.test.jsx](/workspaces/670710731-swreqspec/frontend/src/__tests__/AC-BKG-01.test.jsx)
 - ผล backend: `6 passed`
 - ผล frontend: `1 passed, 1 todo` (test ของ TC-BKG-01-3 รอการสร้าง BookingResult และคำตอบ Q-02)
+
+### 2569-10-07 08.31 คำสั่ง: /verify specs/001-booking/
+- ผล test: backend `6 passed`; frontend `1 passed, 1 todo`; ไม่พบ test fail
+- RTM: เพิ่มใน [specs/001-booking/rtm.md](/workspaces/670710731-swreqspec/specs/001-booking/rtm.md)
+- สถานะตามรอยไปข้างหน้า: ครบ 0, ยังไม่ถึง 11, รอ Q-02 1, ช่องโหว่ 9
+- ข้อค้นพบใหม่: F-01 ถึง F-12
+
+### 2569-10-07 08.38 แก้ F-06
+- ทีมสั่ง: ลบ endpoint และฟังก์ชัน cancel booking เพราะการยกเลิก/เลื่อนคิวอยู่ใน Out of scope (UC-02)
+- ไฟล์ที่แก้: [backend/app/booking/router.py](/workspaces/670710731-swreqspec/backend/app/booking/router.py), [backend/app/booking/service.py](/workspaces/670710731-swreqspec/backend/app/booking/service.py)
+- ผล: ลบ `DELETE /bookings/{booking_id}` และ `service.cancel_booking`; อัปเดต F-06 ใน [specs/001-booking/rtm.md](/workspaces/670710731-swreqspec/specs/001-booking/rtm.md)
+
+### 2569-10-07 08.39 คำสั่ง: /verify specs/001-booking/
+- ผล test: backend `6 passed`; frontend `1 passed, 1 todo`; ไม่พบ test fail
+- ยืนยัน F-06: ไม่พบ endpoint หรือฟังก์ชันยกเลิกในโค้ดแล้ว
+- RTM: ย้าย F-06 ออกจากข้อค้นพบที่ยังค้าง และคงไว้ในหัวข้อ "แก้แล้ว"
